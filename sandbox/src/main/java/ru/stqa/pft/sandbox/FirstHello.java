@@ -7,12 +7,11 @@ public class FirstHello {
      hello("user");
      hello("Rusia");
 
-     double l = 5;
-     System.out.println("Площадь квадрата со стороной " + l + " = " + area(l));
+     Square s =  new Square(5);
+     System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
 
-     double a = 3;
-     double b = 5;
-     System.out.println("Площадь прямоугольника со сторонами " + a + " и " + b + " = " + area(a, b));
+     Rectangle r = new Rectangle(3, 5);
+     System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + r.area());
 }
 
 public static void hello(String somebody){
@@ -20,11 +19,5 @@ public static void hello(String somebody){
 
 }
 
-public static double area(double len){
-    return len * len;
-}
 
-public static double area(double a, double b){
-    return a * b;
-}
 }
