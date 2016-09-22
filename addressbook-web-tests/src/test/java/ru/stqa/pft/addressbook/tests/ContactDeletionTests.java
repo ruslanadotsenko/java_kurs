@@ -15,7 +15,6 @@ import org.openqa.selenium.*;
 import static org.openqa.selenium.OutputType.*;
 
 public class ContactDeletionTests extends TestBase{
-    FirefoxDriver wd;
     
     @Test
     public void testContactDeletion() {
