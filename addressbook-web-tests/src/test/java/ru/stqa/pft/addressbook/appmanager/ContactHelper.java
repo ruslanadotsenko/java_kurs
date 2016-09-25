@@ -38,8 +38,8 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void selectContacts() {
-        click(By.name("selected[]"));
+    public void selectContacts(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteSelectedContacts() {
