@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.Date;
 import java.io.File;
@@ -23,15 +24,15 @@ public class ContactDeletionTests extends TestBase{
     @Test
     public void testContactDeletion() {
         app.getNavigationHelper().gotoContactPage();
-        int before = app.getContactHelper().getContactCount();
         if (! app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact(new ContactData("testname", "testlastname", "testaddress", "test1@mail.ru", "1111111111", "2222222222", "test1"), true);
         }
-        app.getContactHelper().selectContacts(before - 1);
+        List<ContactData> before = app.getContactHelper().getContactList();
+        app.getContactHelper().selectContacts(before.size() - 1);
         app.getContactHelper().deleteSelectedContacts();
         app.getNavigationHelper().gotoContactPage();
-        int after = app.getContactHelper().getContactCount();
-        Assert.assertEquals(after, before - 1);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() - 1);
     }
 
 }
