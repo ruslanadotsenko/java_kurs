@@ -62,7 +62,7 @@ public class ContactHelper extends HelperBase{
 
     public void createContact(ContactData contact, boolean b) {
         initContactCreation();
-        fillNewContactForm(contact, true);
+        fillNewContactForm(contact, b);
         submitContactCreation();
         returnToHomePage();
 
@@ -80,7 +80,7 @@ public class ContactHelper extends HelperBase{
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.xpath("//*[@id='maintable']/tbody/tr[@name='entry']")); //"//table[@id='maintable']/tbody/tr"));
+        List<WebElement> elements = wd.findElements(By.xpath("//*[@id='maintable']/tbody/tr[@name='entry']"));
         for (WebElement element : elements) {
             String firstname = element.getText();
             String lastname = element.getText();
