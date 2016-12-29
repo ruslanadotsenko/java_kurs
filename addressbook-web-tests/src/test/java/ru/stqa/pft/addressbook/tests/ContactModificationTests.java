@@ -16,12 +16,12 @@ public class ContactModificationTests extends TestBase {
     public void testModificationTests() {
         app.getNavigationHelper().gotoContactPage();
         if (! app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("testname", "testlastname", "testaddress", "test1@mail.ru", "1111111111", "2222222222", "test1"));
+            app.getContactHelper().createContact(new ContactData("testname", "testlastname", "testaddress", "test1@mail.ru", "1111111111", "2222222222"));
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectContacts(before.size() - 1);
         app.getContactHelper().initContactModification();
-        ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "testname", "testlastname", "testaddress", "test1@mail.ru", "1111111111", "2222222222", "test1");
+        ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "testname", "testlastname", "testaddress", "test1@mail.ru", "1111111111", "2222222222");
         app.getContactHelper().fillNewContactForm(contact, true);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().gotoContactPage();
@@ -30,7 +30,7 @@ public class ContactModificationTests extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(contact);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after)); //преобразовали списки в множества
     }
 }
 

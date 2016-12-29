@@ -28,11 +28,11 @@ public class ContactHelper extends HelperBase{
         type(By.name("home"), contactData.getHomephone());
         type(By.name("mobile"), contactData.getMobilephone());
 
-        if (creation) {
+      /*  if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+        }*/
 
     }
     public void initContactCreation() {
@@ -84,7 +84,12 @@ public class ContactHelper extends HelperBase{
         for (WebElement element : elements) {
             String firstname = element.getText();
             String lastname = element.getText();
-            ContactData contact = new ContactData(firstname, lastname, null, null, null, null, null);
+            String address = element.getText();
+            String email = element.getText();
+            String homephone = element.getText();
+            String mobilephone = element.getText();
+            String id = element.findElement(By.tagName("input")).getAttribute("value");
+            ContactData contact = new ContactData(id, firstname, lastname, address, email, homephone, mobilephone);
             contacts.add(contact);
         }
         return contacts;
