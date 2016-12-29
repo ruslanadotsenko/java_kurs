@@ -1,13 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("home"), contactData.getHomephone());
         type(By.name("mobile"), contactData.getMobilephone());
 
-      /*  if (creation) {
+        /*if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -82,15 +81,16 @@ public class ContactHelper extends HelperBase{
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.xpath("//*[@id='maintable']/tbody/tr[@name='entry']"));
         for (WebElement element : elements) {
-            String firstname = element.getText();
-            String lastname = element.getText();
-            String address = element.getText();
-            String email = element.getText();
-            String homephone = element.getText();
-            String mobilephone = element.getText();
-            String id = element.findElement(By.tagName("input")).getAttribute("value");
-            ContactData contact = new ContactData(id, firstname, lastname, address, email, homephone, mobilephone);
-            contacts.add(contact);
+            List<WebElement> cells= element.findElements(By.tagName("td"));
+            String firstname = cells.get(2).getText();
+            String lastname = cells.get(1).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+
+            ContactData contact = new ContactData().
+                        withId(id).
+                        withFirstname(firstname).
+                        withLastname(lastname);
+                    contacts.add(contact);
         }
         return contacts;
     }

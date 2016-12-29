@@ -1,16 +1,16 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private final String id;
-    private final String firstname;
-    private final String lastname;
-    private final String address;
-    private final String email;
-    private final String homephone;
-    private final String mobilephone;
-  //  private String group;
+    private int id;
+    private String firstname;
+    private String lastname;
+    private String address;
+    private String email;
+    private String homephone;
+    private String mobilephone;
+    //private String group;
 
-    public ContactData(String id, String firstname, String lastname, String address, String email, String homephone, String mobilephone/*, String group*/) {
+    public ContactData(int id, String firstname, String lastname, String address, String email, String homephone, String mobilephone) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -18,30 +18,19 @@ public class ContactData {
         this.email = email;
         this.homephone = homephone;
         this.mobilephone = mobilephone;
-       // this.group = group;
+        //this.group = group;
     }
 
-    public ContactData(String firstname, String lastname, String address, String email, String homephone, String mobilephone/*, String group*/) {
-        this.id = null;
-        this.firstname = firstname;
-        this.lastname = lastname;
-       this.address = address;
-        this.email = email;
-        this.homephone = homephone;
-        this.mobilephone = mobilephone;
-       // this.group = group;
+    public ContactData() {
+        this.id = 0;
     }
 
     @Override
     public String toString() {
         return "ContactData{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", homephone='" + homephone + '\'' +
-                ", mobilephone='" + mobilephone + '\'' +
                 '}';
     }
 
@@ -52,29 +41,24 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (id != that.id) return false;
         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-        if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (homephone != null ? !homephone.equals(that.homephone) : that.homephone != null) return false;
-        return mobilephone != null ? mobilephone.equals(that.mobilephone) : that.mobilephone == null;
+        return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (homephone != null ? homephone.hashCode() : 0);
-        result = 31 * result + (mobilephone != null ? mobilephone.hashCode() : 0);
         return result;
     }
 
-    public String getId() { return id; }
+
+    public int getId() {
+        return id;
+    }
 
     public String getFirstname() {
         return firstname;
@@ -100,5 +84,44 @@ public class ContactData {
         return mobilephone;
     }
 
-   // public String getGroup() { return group; }
+    //public String getGroup() { return group; }
+
+    public ContactData withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public ContactData withFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+    }
+
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withHomephone(String homephone) {
+        this.homephone = homephone;
+        return this;
+    }
+
+    public ContactData withMobilephone(String mobilephone) {
+        this.mobilephone = mobilephone;
+        return this;
+    }
+
+   /* public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }*/
 }
