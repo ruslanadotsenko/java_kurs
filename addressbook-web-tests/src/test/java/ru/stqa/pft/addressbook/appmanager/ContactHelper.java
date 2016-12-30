@@ -67,6 +67,13 @@ public class ContactHelper extends HelperBase{
 
     }
 
+    public void modifyContact(int index, ContactData contact) {
+        selectContacts(index);
+        initContactModification();
+        fillNewContactForm(contact, true);
+        submitContactModification();
+    }
+
     public void returnToHomePage() { click(By.linkText("home page"));}
 
     public boolean isThereAContact() {
