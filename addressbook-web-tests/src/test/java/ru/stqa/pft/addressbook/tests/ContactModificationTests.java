@@ -26,7 +26,14 @@ public class ContactModificationTests extends TestBase {
 
         List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(before.get(index).getId(), "testname", "testlastname", "testaddress", "test1@mail.ru", "1111111111", "2222222222");
+        ContactData contact = new ContactData().
+                        withId(before.get(index).getId()).
+                        withFirstname("testname").
+                        withLastname("testlastname").
+                        withAddress("testaddress").
+                        withEmail("test1@mail.ru").
+                        withHomephone("1111111111").
+                        withMobilephone("2222222222");
         app.contact().modify(index, contact);
         app.goTo().contactPage();
         List<ContactData> after = app.contact().list();

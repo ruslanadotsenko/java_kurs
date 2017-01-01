@@ -10,54 +10,10 @@ public class ContactData {
     private String mobilephone;
     //private String group;
 
-    public ContactData(int id, String firstname, String lastname, String address, String email, String homephone, String mobilephone) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-        this.email = email;
-        this.homephone = homephone;
-        this.mobilephone = mobilephone;
-        //this.group = group;
-    }
 
     public ContactData() {
         this.id = Integer.MAX_VALUE;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getHomephone() {
-        return homephone;
-    }
-
-    public String getMobilephone() {
-        return mobilephone;
-    }
-
-    //public String getGroup() { return group; }
 
     public ContactData withId(int id) {
         this.id = id;
@@ -93,10 +49,37 @@ public class ContactData {
         return this;
     }
 
-   /* public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }*/
+
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getHomephone() {
+        return homephone;
+    }
+
+    public String getMobilephone() {
+        return mobilephone;
+    }
+
+
 
     @Override
     public String toString() {

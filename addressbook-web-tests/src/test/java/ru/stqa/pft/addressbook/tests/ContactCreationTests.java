@@ -24,7 +24,7 @@ public class ContactCreationTests extends TestBase {
                 withEmail("test@mail.tu").
                 withHomephone("1111111111").
                 withMobilephone("222222222");
-                //withGroup("test1");
+
         app.contact().create(contact);
         app.goTo().contactPage();
         List<ContactData> after = app.contact().list();
