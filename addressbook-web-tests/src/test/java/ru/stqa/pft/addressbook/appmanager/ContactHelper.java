@@ -3,8 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.openqa.selenium.support.ui.Select;
+
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
@@ -71,6 +70,7 @@ public class ContactHelper extends HelperBase{
         initContactCreation();
         fillNewContactForm(contact, true);
         submitContactCreation();
+        contactCache = null;
         returnToHomePage();
 
     }
@@ -79,6 +79,7 @@ public class ContactHelper extends HelperBase{
         selectContactsById(contact.getId());
         initContactModification();
         fillNewContactForm(contact, true);
+        contactCache = null;
         submitContactModification();
     }
 
@@ -86,6 +87,7 @@ public class ContactHelper extends HelperBase{
     public void delete(ContactData contact) {
         selectContactsById(contact.getId());
         deleteSelectedContacts();
+        contactCache = null;
     }
 
 
@@ -100,20 +102,26 @@ public class ContactHelper extends HelperBase{
     }
 
 
+    private  Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null) {
+            return new Contacts(contactCache);
+        }
+
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath("//*[@id='maintable']/tbody/tr[@name='entry']"));
         for (WebElement element : elements) {
             List<WebElement> cells= element.findElements(By.tagName("td"));
             String firstname = cells.get(2).getText();
             String lastname = cells.get(1).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().
+            contactCache.add(new ContactData().
                         withId(id).
                         withFirstname(firstname).
                         withLastname(lastname));
         }
-        return contacts;
+        return new Contacts(contactCache);
     }
 
 
