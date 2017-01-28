@@ -15,7 +15,7 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() {
-        app.goTo().contactPage();
+        app.goTo().gotoHomePage();
         Contacts before = app.contact().all();
         app.goTo().gotoAddContactPage();
 
@@ -28,7 +28,7 @@ public class ContactCreationTests extends TestBase {
                 withMobilephone("222222222");
 
         app.contact().create(contact);
-        app.goTo().contactPage();
+        app.goTo().gotoHomePage();
         assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.contact().all();
         assertThat(after, equalTo(
